@@ -3,5 +3,9 @@
 }
 .buttonHome {
     background-color: green;
-    font-size: 30px;
+    font-size: 50px;
+}
+.buttonHome:hover{
+    cursor: pointer;
+    border: solid red;
 }
