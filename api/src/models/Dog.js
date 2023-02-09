@@ -5,10 +5,9 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('dog', {
     id: {
-      type: DataTypes.UUID,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      autoincrement: true,
       primaryKey: true,
-      unique: true
     },
     name: {
       type: DataTypes.STRING,
@@ -25,5 +24,6 @@ module.exports = (sequelize) => {
     añosDeVida: {
       type: DataTypes.INTEGER
     }
-  },{timestamps:false});
+  },
+  {timestamps:false});
 };
