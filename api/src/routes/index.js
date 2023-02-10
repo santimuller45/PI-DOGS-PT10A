@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getApiDogs, getById, addDog, getTemperaments } = require("../controllers/controllers.js");
+const { getApiDogs, getQuery,getById, addDog, getTemperaments } = require("../controllers/controllers.js");
 const { Dog , Temperamento } = require("../db.js")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -11,14 +11,14 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.get("/dogs", async (req,res) => {
     try{
-        const getDogsApi = await getApiDogs();
-        const getDogsDB = await Dog.findAll();
-        if (!getDogsDB) {
+        const { name } = req.query;
+        if (!name){
+            const getDogsApi = await getApiDogs();
             res.status(200).json(getDogsApi);
-        } else {
-            res.status(200).json([...getDogsApi,...getDogsDB]);
-        }
-        
+        }else {
+            const resultQuery = await getQuery(name);
+            res.status(200).json(resultQuery);
+        }   
     }catch (err) {
         res.status(400).send(err.message);
     }
@@ -28,7 +28,6 @@ router.get("/dogs/:idRaza", async (req,res) => {
     try {
         const { idRaza } = req.params;
         const filteredRaza = await getById(idRaza);
-        if(filteredRaza.length === 0) throw Error(`No se encontró una raza con el id:${idRaza}`);
         res.status(200).json(filteredRaza);
     }catch (err) {
         res.status(400).send(err.message);
