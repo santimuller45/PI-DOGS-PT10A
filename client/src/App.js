@@ -1,10 +1,13 @@
 import './App.css';
-import {Route,Routes} from "react-router-dom";
+import { Route, Routes, useLocation} from "react-router-dom";
 import Welcome from './components/welcome/Welcome';
 import Home from './components/home/Home';
 import Form from './components/form/Form';
 
 function App() {
+
+  const location = useLocation();
+
   return (
     <div className="App">
         <Routes>

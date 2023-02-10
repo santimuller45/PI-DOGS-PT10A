@@ -9,7 +9,7 @@ export default function Welcome() {
     return (
         <div>
             <h1 className={styles.title}>Bienvenidos al PI-Dogs</h1>
-            <button className={styles.buttonHome} onClick={(() => navigate("/home"))}>Home</button>
+            <button className={styles.buttonHome} onClick={(() => navigate("/home"))}>Go to Home</button>
         </div>
     );
 }

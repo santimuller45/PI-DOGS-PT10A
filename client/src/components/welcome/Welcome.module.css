@@ -1,11 +1,18 @@
 .title{
     font-size: 100px;
+    color: #6e5307;
+    padding: auto;
 }
 .buttonHome {
-    background-color: green;
+    position: absolute;
+    left: 40%;
+    top: 24%;
+    background-color: #f2ba83;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 50px;
+    border-radius: 30px;
 }
 .buttonHome:hover{
     cursor: pointer;
-    border: solid red;
+    box-shadow: 5px 5px 10px #6e5307;
 }

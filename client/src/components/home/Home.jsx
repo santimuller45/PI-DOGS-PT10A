@@ -20,7 +20,6 @@ export default function Home() {
                     <button>Peso</button>
                 </div>
             </div>
-            <h1>Bienvenidos al Home</h1>
         </div>
     )
 }
