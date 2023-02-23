@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Form.module.css"
 import { useState } from "react";
-import validate from "../validation/validation";
+import validate from "./validation/validation.js";
 
-export default function Form() {
+function Form() {
 
     const [form, setForm] = useState({
         nombre:"",
@@ -82,3 +82,5 @@ export default function Form() {
         </>
     )
 }
+
+export default Form;

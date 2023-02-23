@@ -8,9 +8,15 @@ const getApiDogs = async () => {
     let resultsApi = apiDB.data.map(elem => {
         return {
             id: elem.id,
-            name: elem.name,
-            altura: elem.height.metric,
-            peso: elem.weight.metric,
+            nombre: elem.name,
+            altura: {
+                min:elem.height.metric.split(" -")[0],
+                max:elem.height.metric.split("- ")[1],
+            },
+            peso: {
+                min: elem.weight.metric.split(" -")[0],
+                max: elem.weight.metric.split("- ")[1]
+            },
             añosDeVida: elem.life_span,
             temperamento: elem.temperament,
             img: elem.image.url
@@ -22,7 +28,7 @@ const getApiDogs = async () => {
 
 const getQuery = async (prop) => {
     const resultsApi = await getApiDogs();
-    const findQuery = resultsApi.filter(elem => elem.name === prop);
+    const findQuery = resultsApi.filter(elem => elem.nombre === prop);
     if (findQuery.length === 0) throw Error("No se encontro la query solicitada");
     else return findQuery;
 }
@@ -41,11 +47,22 @@ const addDog = async (name,altura,peso,añosDeVida) => {
 
 const getTemperaments = async () => {
     const apiDB = await getApiDogs();
-    let getTemp = apiDB.map(dog => dog.temperamento);
-    let arrayTemp = getTemp.join("").split(",");
-    getTemp = arrayTemp.filter((item,index) => arrayTemp.indexOf(item) === index);
-    let newDBTemp = await Temperamento.bulkCreate(getTemp);
-    return newDBTemp;
+    let getTemp = [];
+    apiDB.forEach(dog => {
+        if (dog.temperamento) getTemp.push(dog.temperamento)
+    })
+    let resultTemp = getTemp.join(",").split(",");
+    resultTemp = resultTemp.map(elem => elem.trim());
+    resultTemp = resultTemp.filter((value,index,self) => self.indexOf(value) === index);
+    resultTemp.forEach(dog => 
+        Temperamento.findOrCreate({
+            where:{
+                name:dog,
+            }
+        })
+    );
+    const result = await Temperamento.findAll();
+    return result;
 };
 
 

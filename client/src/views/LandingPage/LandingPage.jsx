@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Welcome.module.css"
+import styles from "./LandingPage.module.css"
 import { useNavigate } from "react-router-dom";
 
-export default function Welcome() {
+function LandingPage() {
 
     const navigate = useNavigate();
 
@@ -13,3 +13,5 @@ export default function Welcome() {
         </div>
     );
 }
+
+export default LandingPage;

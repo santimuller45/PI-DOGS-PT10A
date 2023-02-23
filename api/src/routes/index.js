@@ -47,7 +47,7 @@ router.post("/dogs", async (req,res) => {
 
 router.get("/temperaments", async (req,res) => {
     try {
-        const results = await getTemperaments()
+        const results = await getTemperaments();
         res.status(200).json(results);
     }catch (err) {
         res.status(400).send(err.message);
