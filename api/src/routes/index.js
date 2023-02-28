@@ -36,9 +36,8 @@ router.get("/dogs/:idRaza", async (req,res) => {
 
 router.post("/dogs", async (req,res) => {
     try {
-        const {name , altura , peso , añosDeVida } = req.body;
-        if (!name || !altura || !peso) throw Error("Faltan datos a completar");
-        const newDog = await addDog(name,altura ,peso ,añosDeVida);
+        const { nombre , altura , peso , añosDeVida } = req.body;
+        const newDog = await addDog( nombre , altura , peso , añosDeVida );
         res.status(201).json(newDog);
     }catch (err) {
         res.status(400).send(err.message);

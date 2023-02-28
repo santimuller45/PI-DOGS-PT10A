@@ -7,11 +7,12 @@ function LandingPage() {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className={styles.backGround}>
             <h1 className={styles.title}>Bienvenidos al PI-Dogs</h1>
-            <button className={styles.buttonHome} onClick={(() => navigate("/home"))}>Go to Home</button>
+            <button className={styles.buttonHome} onClick={(() => navigate("/home"))}>Ingresar a la API</button>
         </div>
     );
 }
+
 
 export default LandingPage;

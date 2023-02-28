@@ -23,7 +23,7 @@ const getApiDogs = async () => {
         }
     })
     let resultsDB = await Dog.findAll();
-    return [...resultsApi,...resultsDB]
+    return [...resultsDB,...resultsApi];
 };
 
 const getQuery = async (prop) => {
@@ -40,8 +40,9 @@ const getById = async (id) => {
     else return filtered;
 };
 
-const addDog = async (name,altura,peso,añosDeVida) => {
-    const newDog = await Dog.create({name,altura ,peso ,añosDeVida});
+const addDog = async (nombre , altura , peso , añosDeVida = "-") => {
+    if (!nombre || !altura || !peso) throw Error("Faltan datos a completar");
+    const newDog = await Dog.create({ nombre , altura , peso , añosDeVida });
     return newDog;
 };
 

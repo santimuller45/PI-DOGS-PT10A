@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Nav.module.css"
 import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 
 
 function Nav() {
@@ -8,23 +9,13 @@ function Nav() {
     return (
         <div className={styles.nav}>
             <div>
-                <Link to="/home">HOME</Link>
+                <SearchBar></SearchBar> 
             </div>
             <div>
-                <Link to="/form">FORM</Link>
+                <Link to="/home" className={styles.text}>HOME</Link>
             </div>
-            <div>
-                <input 
-                    placeholder="Buscar raza..."
-                />
-            </div>
-            <div>
-                    <button>Filtrar por temperamento</button>
-            </div>
-            <div>
-                    <label>Ordenar por: </label>
-                    <button>Orden alfabético</button>
-                    <button>Peso</button>
+            <div >
+                <Link to="/form" className={styles.text}>CREAR RAZA</Link>
             </div>
         </div>
     )

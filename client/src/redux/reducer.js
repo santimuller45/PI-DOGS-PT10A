@@ -1,8 +1,8 @@
-import { GET_BY_ID, GET_DOGS } from "./actions.js";
+import { GET_BY_ID, GET_DOGS, SEARCH_DOG } from "./actions.js";
 
 const initialState = {
     allDogs: [],
-    detailDog: []
+    detailDog: {}
 }
 
 function reducerDogs(state = initialState, actions) {
@@ -14,10 +14,15 @@ function reducerDogs(state = initialState, actions) {
             }
         }
         case GET_BY_ID: {
-            // const resultFiltered = state.allDogs.find(dog => dog.id == actions.payload)
             return{
                 ...state,
                 detailDog: actions.payload
+            }
+        }
+        case SEARCH_DOG:{
+            return {
+                ...state,
+                allDogs: actions.payload
             }
         }
         default: return {...state};

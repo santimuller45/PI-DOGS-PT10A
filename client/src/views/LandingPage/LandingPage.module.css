@@ -1,11 +1,22 @@
+.backGround {
+    background-image: url("../../source/pugs-7200102_1280.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    height: 98vh;
+    width: 98vw;
+}
 .title{
-    font-size: 100px;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    font-size: 85px;
     color: #6e5307;
     margin: 2px;
 }
 .buttonHome {
     position: absolute;
-    left: 40%;
+    right: 5%;
     top: 24%;
     background-color: #f2ba83;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
