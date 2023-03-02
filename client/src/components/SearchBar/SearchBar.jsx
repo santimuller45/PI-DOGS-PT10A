@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SearchBar.module.css"
 import { useState , useEffect} from "react";
 import { searchDog } from "../../redux/actions.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function SearchBar() {
 

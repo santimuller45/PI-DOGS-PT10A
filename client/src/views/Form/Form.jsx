@@ -58,7 +58,6 @@ function Form() {
 
 
     return (
-        <>
             <form className={styles.form} onSubmit={handlerSubmit}>
                 <label>Nombre *</label>
                 <input
@@ -71,7 +70,8 @@ function Form() {
                 <p className={styles.errors}>{errors.nombre}</p>
                 <br/>
                 <label>Altura *</label>
-                <div>
+                <div className={styles.inputs}>
+                    min:
                     <input
                         name="alturaMin"
                         placeholder="Ingrese altura MIN"
@@ -79,6 +79,7 @@ function Form() {
                         value={form.alturaMin}
                         onChange={handlerInputChange}
                     />
+                    max:
                     <input
                         name="alturaMax"
                         placeholder="Ingrese altura MAX"
@@ -86,11 +87,12 @@ function Form() {
                         value={form.alturaMax}
                         onChange={handlerInputChange} 
                     />
-                    <p className={styles.errors}>{errors.altura}</p>
                 </div>
+                <p className={styles.errors}>{errors.altura}</p>
                 <br/>
                 <label>Peso *</label>
-                <div>
+                <div className={styles.inputs}>
+                    min:
                     <input
                         name="pesoMin"
                         placeholder="Ingrese peso MIN"
@@ -98,6 +100,7 @@ function Form() {
                         value={form.pesoMin}
                         onChange={handlerInputChange}
                     />
+                    max:
                     <input
                         name="pesoMax"
                         placeholder="Ingrese peso MAX"
@@ -105,8 +108,8 @@ function Form() {
                         value={form.pesoMax}
                         onChange={handlerInputChange}
                     />
-                    <p className={styles.errors}>{errors.peso}</p>
                 </div>
+                <p className={styles.errors}>{errors.peso}</p>
                 <br/>
                 <label>Años de vida</label>
                 <input
@@ -117,9 +120,16 @@ function Form() {
                     onChange={handlerInputChange}
                 />
                 <br/>
-                <button type="submit">Submit</button>
+                <label>Temperamentos</label>
+                <select>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <br/>
+                <button type="submit" className={styles.buttonSubmit}>Submit</button>
             </form>
-        </>
     )
 }
 

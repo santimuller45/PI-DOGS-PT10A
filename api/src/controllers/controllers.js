@@ -40,7 +40,7 @@ const getById = async (id) => {
     else return filtered;
 };
 
-const addDog = async (nombre , altura , peso , añosDeVida = "-") => {
+const addDog = async (nombre , altura , peso , añosDeVida ) => {
     if (!nombre || !altura || !peso) throw Error("Faltan datos a completar");
     const newDog = await Dog.create({ nombre , altura , peso , añosDeVida });
     return newDog;
@@ -55,15 +55,14 @@ const getTemperaments = async () => {
     let resultTemp = getTemp.join(",").split(",");
     resultTemp = resultTemp.map(elem => elem.trim());
     resultTemp = resultTemp.filter((value,index,self) => self.indexOf(value) === index);
-    resultTemp.forEach(dog => 
+    resultTemp.forEach(temperamento => 
         Temperamento.findOrCreate({
             where:{
-                name:dog,
+                name:temperamento,
             }
         })
     );
-    const result = await Temperamento.findAll();
-    return result;
+    return resultTemp;
 };
 
 
