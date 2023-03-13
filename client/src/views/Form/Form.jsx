@@ -1,15 +1,21 @@
 import React from "react";
 import styles from "./Form.module.css"
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import validate from "./validation/validation.js";
-import { useDispatch } from "react-redux";
-import { addDog } from "../../redux/actions.js";
+import { useDispatch , useSelector } from "react-redux";
+import { addDog , getTemp } from "../../redux/actions.js";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        dispatch(getTemp());
+    })
+
+    const dogTemps = useSelector(state => state.temperamentos);
     const [form, setForm] = useState({
         nombre:"",
         alturaMin:"",
@@ -17,6 +23,7 @@ function Form() {
         pesoMin:"",
         pesoMax:"",
         añosDeVida:"",
+        temperamentos:[]
     });
     const [errors, setErrors] = useState({
         nombre:"",
@@ -39,23 +46,25 @@ function Form() {
     };
     const handlerSubmit = (e) => {
         e.preventDefault();
-        const newDog = {
-            nombre: form.nombre,
-            altura: {
-                min: form.alturaMin,
-                max: form.alturaMax
-            },
-            peso: {
-                min: form.pesoMin,
-                max: form.pesoMax
-            },
-            añosDeVida: form.añosDeVida
-        };
-        dispatch(addDog(newDog.nombre, newDog.altura, newDog.peso, newDog.añosDeVida));
-        alert("Raza creada exitosamente")
-        navigate("/home")
+        if (form.nombre !== "" && form.alturaMin > 0 && form.alturaMax > 0 && form.pesoMin > 0 && form.pesoMax > 0){
+            const newDog = {
+                nombre: form.nombre,
+                altura: {
+                    min: form.alturaMin,
+                    max: form.alturaMax
+                },
+                peso: {
+                    min: form.pesoMin,
+                    max: form.pesoMax
+                },
+                añosDeVida: form.añosDeVida
+            };
+            dispatch(addDog(newDog.nombre, newDog.altura, newDog.peso, newDog.añosDeVida));
+            alert("Raza creada exitosamente")
+            navigate("/home")
+        }
     };
-
+    
 
     return (
             <form className={styles.form} onSubmit={handlerSubmit}>
@@ -122,10 +131,7 @@ function Form() {
                 <br/>
                 <label>Temperamentos</label>
                 <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
+                    {dogTemps.map(temp => (<option key={temp}>{temp}</option>))}
                 </select>
                 <br/>
                 <button type="submit" className={styles.buttonSubmit}>Submit</button>

@@ -17,7 +17,6 @@ function SearchBar() {
     })
 
     return(
-        <>
             <input
                 className={styles.input} 
                 placeholder="Buscar raza..."
@@ -26,8 +25,6 @@ function SearchBar() {
                 value={raza}
                 onChange={handleInputChange}
             />
-        </>
-
     )
 }
 

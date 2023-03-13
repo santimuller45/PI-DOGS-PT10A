@@ -16,13 +16,13 @@ function Card({id, img , nombre, temperamento , peso}) {
                 <h1 >{nombre}</h1>
             </Link>
             <div className={styles.container}>
-                {temperamento ? <h3>TEMP: {temperamento}</h3> : undefined}
-                {peso.min ? 
-                    <h3>PESO MIN: {peso.min}</h3>
+                {temperamento ? <h4>TEMP: {temperamento}</h4> : undefined}
+                {peso.max ? 
+                    <h2>PESO MAX: {peso.max}</h2>
                     : undefined
                 }
-                {peso.max ? 
-                    <h3>PESO MAX: {peso.max}</h3>
+                {peso.min ? 
+                    <h2>PESO MIN: {peso.min}</h2>
                     : undefined
                 }
             </div>

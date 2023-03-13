@@ -26,9 +26,9 @@ const getApiDogs = async () => {
     return [...resultsDB,...resultsApi];
 };
 
-const getQuery = async (prop) => {
+const getQuery = async (nombre) => {
     const resultsApi = await getApiDogs();
-    const findQuery = resultsApi.filter(elem => elem.nombre === prop);
+    const findQuery = resultsApi.filter(elem => (elem.nombre).toUpperCase() === nombre.toUpperCase());
     if (findQuery.length === 0) throw Error("No se encontro la query solicitada");
     else return findQuery;
 }
@@ -40,9 +40,13 @@ const getById = async (id) => {
     else return filtered;
 };
 
-const addDog = async (nombre , altura , peso , añosDeVida ) => {
+const addDog = async (nombre , altura , peso , temperamento , añosDeVida ) => {
     if (!nombre || !altura || !peso) throw Error("Faltan datos a completar");
     const newDog = await Dog.create({ nombre , altura , peso , añosDeVida });
+    const findTemp = await Temperamento.findAll({where:{
+        name: temperamento
+    }});
+    await newDog.addTemperamento(findTemp);
     return newDog;
 };
 
